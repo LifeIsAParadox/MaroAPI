@@ -1,0 +1,7 @@
+FROM mongo:4.4.6
+
+RUN mkdir /mongo-seed
+COPY ./backup /mongo-seed
+WORKDIR /mongo-seed
+
+ENTRYPOINT ["/mongo-seed/import.sh"]

@@ -1,54 +1,36 @@
-# Maro's API Service
+# This is a Fork 
+This fork add Docker support for easy setup.
+
+# Maro's API Service 
 
 A Hypixel Skyblock focused API providing an easier way to communicate with Hypixel's API.
 
 The API has different endpoints which include; auction data, networth data, bazaar data and forge profit data.
 
-## Setup Instructions using NodeJS
+## Instruction to host
 
-### Prerequisites
+This fork added Docker feature to easy setup maroapi.
 
-- NodeJS >= 14
-- Mongo Database
+### Steps:
 
-### Local Setup
+- Install [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) on the machine
+- clone This fork `git clone https://github.com/LifeIsAParadox/MaroAPI`
+- Change sample.env to .env and add your stuff into it
+- Run `docker-compose up -d --build` the first you use it.
 
-To get started, clone the repository using:
+To stop the container do `docker-compose down -v`
+To Start it again do `docker-compose up -d`
 
-    git clone https://github.com/zt3h/maro-api
+## Environment Variables
 
-Next go into the `maro-api` folder and install the required dependencies using either Yarn or NPM:
+### Required
 
-    yarn install
-    npm install
+- `USERNAME`: Username for DB
+- `PASSWORD`: Password for DB
+- `DB`: Database Name
+- `DBCONTAINERNAME`: Container name for DB
 
-Then you can start the API service using the following command using either Yarn or NPM:
-
-    yarn start
-    npm start
-
-### Database Setup
-
-First navigate into the `/backup` folder and import the .csv files into a Mongo Database.
-
-    mongoimport --type csv -d maro -c auctions --headerline --drop auctions.csv <MongoConnectionString>
-    mongoimport --type csv -d maro -c bazaar --headerline --drop bazaar.csv <MongoConnectionString>
-    mongoimport --type csv -d maro -c leaderboards --headerline --drop leaderboards.csv <MongoConnectionString>
-    mongoimport --type csv -d maro -c players --headerline --drop players.csv <MongoConnectionString>
-
-To change the database name replace maro in `-d maro` with the desired database name.
-
-Once done, you will then need to enter your Mongo DB URL to the `config.js` before starting the application.
-
-### Endpoint Usage
-
-Endpoints that require a valid parameter will be listed on the API documentation which can be found by navigating to the below route once the application has been started.
-
-    http://localhost:3000/
-
-For sending a request to the POST endpoints, details on the required body structure and the response format is found [here](https://gist.github.com/zt3h)
-
-### API Hosts
+## API Hosts
 
 The below list of domains are users / organisations that have chosen to host this API under their own management. Note that these services could be stopped at anytime, so please make sure to keep up in touch with the owners.
 
@@ -56,9 +38,6 @@ The below list of domains are users / organisations that have chosen to host thi
     https://skyblock.acebot.xyz - By HyperGame (discord.gg/hXPapQ3)
     
 
-### Support / Contact
-
-If you have any questions or queries about the code please join Maro's [discord](https://discord.gg/CAMZpQyCxU)
 
 ## License
 

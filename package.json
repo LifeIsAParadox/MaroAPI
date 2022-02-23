@@ -4,10 +4,12 @@
   "description": "A Hypixel Skyblock focused API, created by Nariah.",
   "main": "application.js",
   "scripts": {
-    "start": "pm2 start ecosystem.config.js --only prod && pm2 monit"
+    "start": "pm2-runtime --json ecosystem.config.js --only prod",
+    "stop" : "pm2 stop all"
   },
   "author": "Nariah",
   "license": "MIT",
+  "engines": { "node": ">=12.0.0 <17.5.0" },
   "dependencies": {
     "axios": "^0.26.0",
     "express": "^4.17.3",

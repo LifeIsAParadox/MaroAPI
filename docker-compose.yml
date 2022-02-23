@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  web:
+    container_name: maroapi
+    build: .
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    ports:
+      - 3000:3000
+    networks:
+      - maroapi-network
+    env_file: .env
+
+  mongodb:
+    image: mongo:4.4.6
+    container_name: ${DBCONTAINERNAME}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${PASSWORD}
+    restart: always
+    networks:
+      - maroapi-network
+#      - maroapi-db
+
+  mongo_seed:
+    build:
+      context: .
+      dockerfile: Dockerfile_Mongodb
+    container_name: maroapi_mongodb_seed
+    depends_on:
+      - mongodb
+    env_file: .env
+    networks:
+      - maroapi-network
+
+networks:
+  maroapi-network:
+    driver: bridge
+#  maroapi-db:
+#    external: true
+#    name: maroapi-db
